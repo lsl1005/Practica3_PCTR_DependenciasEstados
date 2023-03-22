@@ -6,17 +6,18 @@ import java.util.Hashtable;
 public class Parque implements IParque{
 
 	static final long MIN = 0; // mínimo valor permitido
-	static final long MAX = 50; // máximo valor permitido 
+	private final long MAX; // máximo valor permitido 
 	private int contadorPersonasTotales;
 	private Hashtable<String, Integer> contadoresPersonasPuerta;
 	
-	public Parque() {
+	public Parque(long capacidad) {
+		MAX = capacidad;
 		contadorPersonasTotales = 0;
 		contadoresPersonasPuerta = new Hashtable<String, Integer>();
 	}
 
 	@Override
-	public void entrarAlParque(String puerta){		
+	public synchronized	void entrarAlParque(String puerta){		
 		// Si no hay entradas por esa puerta, inicializamos
 		if (contadoresPersonasPuerta.get(puerta) == null){
 			contadoresPersonasPuerta.put(puerta, 0);
@@ -28,7 +29,7 @@ public class Parque implements IParque{
 		}		
 		// Aumentamos el contador total y el individual
 		contadorPersonasTotales++;
-		contadoresPersonasPuerta.put(puerta, contadoresPersonasPuerta.get(puerta)+1);		
+		contadoresPersonasPuerta.put(puerta, contadoresPersonasPuerta.get(puerta)+1);
 		// Imprimimos el estado del parque
 		imprimirInfo(puerta, "Entrada");
 		//Comprobamos e informamos
