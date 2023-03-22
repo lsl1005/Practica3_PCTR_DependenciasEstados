@@ -5,17 +5,15 @@ import java.util.Hashtable;
 
 public class Parque implements IParque{
 
-
-	// TODO 
+	static final long MIN = 0; // mínimo valor permitido
+	static final long MAX = 50; // máximo valor permitido 
 	private int contadorPersonasTotales;
 	private Hashtable<String, Integer> contadoresPersonasPuerta;
-	
 	
 	public Parque() {
 		contadorPersonasTotales = 0;
 		contadoresPersonasPuerta = new Hashtable<String, Integer>();
 	}
-
 
 	@Override
 	public void entrarAlParque(String puerta){		// TODO
@@ -77,16 +75,16 @@ public class Parque implements IParque{
 		
 	}
 
-	protected void comprobarAntesDeEntrar(){
-		//
-		// TODO
-		//
+	protected void comprobarAntesDeEntrar() throws InterruptedException {
+		while (contadorPersonasTotales == MAX) {
+			wait();
+		}
 	}
 
-	protected void comprobarAntesDeSalir(){
-		//
-		// TODO
-		//
+	protected void comprobarAntesDeSalir() throws InterruptedException {
+		while (contadorPersonasTotales == MIN) {
+			wait();
+		}
 	}
 
 
