@@ -1,3 +1,11 @@
 # Practica3_PCTR_DependenciasEstados
 
-Plantilla para la realización de la tercera práctica de la asignatura de Programación Concurrente y Tiempo Real del Grado en Ingeniería Informática de la Universidad de Burgos.
+Víctor Manuel Vaquero Mesa
+
+Luis Sáez López
+
+| _Estado_ | _Condición_                         | _entrarAlParque_ | _salirDelParque_ |
+|----------|-------------------------------------|------------------|------------------|
+| Superior |    contadorPersonasTotales == MAX   | **NO**           | SI               |
+| Medio    | MIN < contadorPersonasTotales < MAX | SI               | SI               |
+| Inferior |    contadorPersonasTotales == MIN   | SI               | **NO**           |
